@@ -1,16 +1,28 @@
 import { PopularFilms } from "components/APIsResults/APIsResults";
+import { useState, useEffect } from "react";
 
-const Home = async() => {
-    const popularFilms = await PopularFilms();
-    console.log('popularFilms: ', popularFilms);
+const Home = () => {
+    const [popularFilms, setPopularFilms] = useState([]);
+
+    useEffect(() => {
+        const searchPopularFilms = async () => {
+            try{
+                const result = await PopularFilms();
+                setPopularFilms(result);
+            } catch (error) {
+                console.error("Error:", error.message);
+            }
+        };
+        searchPopularFilms()
+    }, []);
 
     return(
         <main>
-            {/* <ul>
+            <ul>
                 {popularFilms.map(popularFilm => 
-                    <li>{popularFilm.title}</li>
+                    <li key={popularFilm.id}>{popularFilm.title}</li>
                 )}
-            </ul> */}
+            </ul>
         </main>
     )
 };
