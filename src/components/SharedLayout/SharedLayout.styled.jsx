@@ -23,4 +23,8 @@ margin-left: 20px;
 &.active {
     color: #83093b;
 }
-`
+`;
+
+export const Main = styled.main`
+padding: 0 20px;
+`;

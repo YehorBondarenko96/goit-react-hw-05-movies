@@ -17,13 +17,14 @@ const Home = () => {
     }, []);
 
     return(
-        <main>
+        <div>
+            <h2>Trending today</h2>
             <ul>
                 {popularFilms.map(popularFilm => 
                     <li key={popularFilm.id}>{popularFilm.title}</li>
                 )}
             </ul>
-        </main>
+        </div>
     )
 };
 
