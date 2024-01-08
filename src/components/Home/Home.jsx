@@ -1,5 +1,6 @@
 import { PopularFilms } from "components/APIsResults/APIsResults";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
     const [popularFilms, setPopularFilms] = useState([]);
@@ -21,7 +22,11 @@ const Home = () => {
             <h2>Trending today</h2>
             <ul>
                 {popularFilms.map(popularFilm => 
-                    <li key={popularFilm.id}>{popularFilm.title}</li>
+                    <li key={popularFilm.id}>
+                        <Link to={`/movies/${popularFilm.id}`}>
+                        {popularFilm.title}
+                        </Link>
+                    </li>
                 )}
             </ul>
         </div>
