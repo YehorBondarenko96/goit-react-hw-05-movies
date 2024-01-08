@@ -1,6 +1,7 @@
 import { Container, Header, Main, Link } from "./SharedLayout.styled";
 import { Outlet } from "react-router-dom";
 import { Suspense } from "react";
+import { Loader } from "components/Loader/Loader";
 
 export const SharedLayout = () => {
     return(
@@ -12,7 +13,7 @@ export const SharedLayout = () => {
                 </nav>
             </Header>
             <Main>
-                <Suspense fallback={<div>Loading page...</div>}>
+                <Suspense fallback={<Loader />}>
                     <Outlet />
                 </Suspense>
             </Main>

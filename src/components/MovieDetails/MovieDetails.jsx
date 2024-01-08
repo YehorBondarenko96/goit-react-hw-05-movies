@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams, Link } from "react-router-dom";
 import { searchForId } from "components/APIsResults/APIsResults";
 import { Button, BriefInfoMov, ImgInfoMov, TextInfoMov } from "./MovieDetails.styled";
 
 const MovieDetails = () => {
     const {movieId} = useParams();
-
     const [movie, setMovie] = useState();
-    console.log('movie: ', movie);
+    const location = useLocation();
+    const backLocation = location.state?.from ?? '/';
 
     useEffect(() => {
         const searchPopularFilms = async () => {
@@ -25,7 +25,9 @@ const MovieDetails = () => {
         <>
         {movie && (
             <>
+        <Link to={backLocation}>
         <Button>Go back</Button>
+        </Link>
         <BriefInfoMov>
         <ImgInfoMov src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} alt={movie.title}/>
         <TextInfoMov>

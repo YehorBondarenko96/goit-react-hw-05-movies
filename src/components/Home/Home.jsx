@@ -1,9 +1,10 @@
 import { PopularFilms } from "components/APIsResults/APIsResults";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Home = () => {
     const [popularFilms, setPopularFilms] = useState([]);
+    const location = useLocation();
 
     useEffect(() => {
         const searchPopularFilms = async () => {
@@ -23,7 +24,7 @@ const Home = () => {
             <ul>
                 {popularFilms.map(popularFilm => 
                     <li key={popularFilm.id}>
-                        <Link to={`/movies/${popularFilm.id}`}>
+                        <Link to={`/movies/${popularFilm.id}`} state={{from: location}}>
                         {popularFilm.title}
                         </Link>
                     </li>
