@@ -8,7 +8,8 @@ const endUrl = {
     trending: '/trending/movie/day',
     idSearch: '/movie/',
     credits: '/credits',
-    reviews: '/reviews'
+    reviews: '/reviews',
+    wordSearch: '/search/movie'
 };
 
 export const PopularFilms = async () => {
@@ -41,6 +42,15 @@ export const searchForCast = async (idMovie) => {
 export const searchForReviews = async (idMovie) => {
     try{
         const result = await axios.get(`${baseURL}${endUrl.idSearch}${idMovie}${endUrl.reviews}?api_key=${key}&page=1&language=en-US&include_adult=false`);
+        return result.data.results;
+    } catch(error) { 
+        console.error("Error:", error.message);
+    }
+};
+
+export const searchForWord = async (word) => {
+    try{
+        const result = await axios.get(`${baseURL}${endUrl.wordSearch}?api_key=${key}&page=1&query=${word}&language=en-US&include_adult=false`);
         return result.data.results;
     } catch(error) { 
         console.error("Error:", error.message);

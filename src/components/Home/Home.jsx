@@ -1,7 +1,8 @@
 import { PopularFilms } from "components/APIsResults/APIsResults";
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Loader } from "components/Loader/Loader";
+import RenderFilmsList from "components/RenderFilmsList/RenderFilmsList";
 
 const Home = () => {
     const [popularFilms, setPopularFilms] = useState([]);
@@ -24,16 +25,8 @@ const Home = () => {
     return(
         <div>
             {indicatorLoader && <Loader />}
-            <h2>Trending today</h2>
-            <ul>
-                {popularFilms.map(popularFilm => 
-                    <li key={popularFilm.id}>
-                        <Link to={`/movies/${popularFilm.id}`} state={{from: location}}>
-                        {popularFilm.title}
-                        </Link>
-                    </li>
-                )}
-            </ul>
+            <h2 style={{marginLeft: '20px'}}>Trending today</h2>
+            <RenderFilmsList filmsList={popularFilms} location={location} />
         </div>
     )
 };
