@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { searchForCast } from "components/APIsResults/APIsResults";
-import { ContainerCast, ListCast, ItemCast, ImgCast } from "./Cast.stylrd";
+import { ContainerCast, ListCast, ItemCast, ImgCast } from "./Cast.styled";
 import { Loader } from "components/Loader/Loader";
 
 const Cast = () => {
