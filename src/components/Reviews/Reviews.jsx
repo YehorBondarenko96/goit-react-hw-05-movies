@@ -14,7 +14,6 @@ const Reviews = () => {
             try{
                 const result = await searchForReviews(movieId);
                 setReviewsResult(result);
-                console.log('result: ', result);
             } catch (error) {
                 console.error("Error:", error.message);
             };

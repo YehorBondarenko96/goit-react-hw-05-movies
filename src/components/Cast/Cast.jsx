@@ -1,12 +1,11 @@
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { searchForCast } from "components/APIsResults/APIsResults";
 import { ContainerCast, ListCast, ItemCast, ImgCast } from "./Cast.styled";
 import { Loader } from "components/Loader/Loader";
 
 const Cast = () => {
-    const location = useLocation();
-    const movieId = location.state.movieId;
+    const {movieId} = useParams();
     const [castResult, setCastResult] = useState(null);
     const [indicatorLoader, setIndicatorLoader] = useState(true);
 

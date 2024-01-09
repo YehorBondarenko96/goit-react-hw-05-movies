@@ -48,8 +48,8 @@ const MovieDetails = () => {
         <AddInfo>
             <p>Additional information</p>
             <ul>
-                <li><Link to='cast' state={{movieId}}>Cast</Link></li>
-                <li><Link to={`reviews`}>Revievs</Link></li>
+                <li><Link to='cast'>Cast</Link></li>
+                <li><Link to='reviews'>Revievs</Link></li>
             </ul>
         </AddInfo>
         <Suspense fallback={<Loader />}>
