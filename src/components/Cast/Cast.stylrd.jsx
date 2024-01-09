@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const ContainerCast = styled.div`
+position: relative;
+`;
+
 export const ListCast = styled.ul`
 list-style: none;
 display: flex;

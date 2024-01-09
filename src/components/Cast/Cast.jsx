@@ -1,28 +1,31 @@
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { searchForCast } from "components/APIsResults/APIsResults";
-import { ListCast, ItemCast, ImgCast } from "./Cast.stylrd";
+import { ContainerCast, ListCast, ItemCast, ImgCast } from "./Cast.stylrd";
+import { Loader } from "components/Loader/Loader";
 
 const Cast = () => {
     const location = useLocation();
     const movieId = location.state.movieId;
     const [castResult, setCastResult] = useState(null);
+    const [indicatorLoader, setIndicatorLoader] = useState(true);
 
     useEffect(() => {
         const searchCastFilms = async () => {
             try{
                 const result = await searchForCast(movieId);
                 setCastResult(result);
-                console.log('result: ', result);
             } catch (error) {
                 console.error("Error:", error.message);
             };
+            setIndicatorLoader(false)
         };
         searchCastFilms()
     }, [movieId]);
 
     return(
-        <>
+        <ContainerCast>
+        {indicatorLoader && <Loader />}
         {castResult && (
             <ListCast>
                 {castResult.map(actor => 
@@ -34,7 +37,7 @@ const Cast = () => {
                     )}
             </ListCast>
         )}
-        </>
+        </ContainerCast>
     )
 };
 
