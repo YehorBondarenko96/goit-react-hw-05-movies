@@ -8,8 +8,8 @@ import { useLocation } from "react-router-dom";
 
 const Movies = () => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const paramsFofSearch = searchParams.get("searchValue");
-    const [wordResult, setWordResult] = useState(null);
+    const paramsFofSearch = searchParams.size !== 0 ? searchParams.get("searchValue") : "";
+    const [wordResult, setWordResult] = useState();
     const location = useLocation();
 
     useEffect(() => {

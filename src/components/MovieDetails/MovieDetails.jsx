@@ -11,7 +11,7 @@ const MovieDetails = () => {
     const [movie, setMovie] = useState();
     const [indicatorLoader, setIndicatorLoader] = useState(true);
     const location = useLocation();
-    const backLocation = location.state?.from ?? '/';
+    const [backLocation, setBackLocation] = useState(location.state?.from ?? '/');
 
     useEffect(() => {
         const searchPopularFilms = async () => {
