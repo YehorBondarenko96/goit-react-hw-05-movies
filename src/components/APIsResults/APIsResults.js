@@ -31,8 +31,7 @@ export const searchForId = async (idMovie) => {
 export const searchForCast = async (idMovie) => {
     try{
         const result = await axios.get(`${baseURL}${endUrl.idSearch}${idMovie}${endUrl.credits}?api_key=${key}&page=1&language=en-US&include_adult=false`);
-        console.log('result: ', result);
-        return result.data;
+        return result.data.cast;
     } catch(error) { 
         console.error("Error:", error.message);
     }
