@@ -35,7 +35,7 @@ const MovieDetails = () => {
         <Button>Go back</Button>
         </Link>
         <BriefInfoMov>
-        <ImgInfoMov src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} alt={movie.title}/>
+        {movie.poster_path && <ImgInfoMov src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} alt={movie.title}/>}
         <TextInfoMov>
             <h2>{movie.title} ({movie.release_date.slice(0, 4)})</h2>
             <p>User Scoce: {String(movie.popularity).replace(/\./g, "").slice(0, 2)}%</p>
