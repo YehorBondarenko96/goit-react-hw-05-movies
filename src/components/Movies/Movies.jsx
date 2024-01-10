@@ -11,6 +11,7 @@ const Movies = () => {
     const paramsFofSearch = searchParams.size !== 0 ? searchParams.get("searchValue") : "";
     const [wordResult, setWordResult] = useState();
     const location = useLocation();
+    const [inputValue, setInputValue] = useState(paramsFofSearch);
 
     useEffect(() => {
         if(paramsFofSearch === "") return;
@@ -31,12 +32,20 @@ const Movies = () => {
         setSearchParams({searchValue: dataForSearch});
     };
 
+    const forInputValue = (e) => {
+        const navInputValue = e.currentTarget.value;
+        setInputValue(navInputValue);
+        
+    };
+
     return(
         <>
         <SearchForm onSubmit={forSubmit}>
         <SearchFormInput
         name='search'
         type="text"
+        value={inputValue}
+        onChange={forInputValue}
         autoComplete="off"
         autoFocus
         placeholder="Search movies"
@@ -45,7 +54,7 @@ const Movies = () => {
             <SearchFormButtonLabel>Search</SearchFormButtonLabel>
         </SearchFormButton>
         </SearchForm>
-        <RenderFilmsList filmsList={wordResult} location={location}/>
+        {paramsFofSearch !== "" && <RenderFilmsList filmsList={wordResult} location={location}/>}
         </>
     )
 };

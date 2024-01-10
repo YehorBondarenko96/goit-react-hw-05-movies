@@ -42,7 +42,7 @@ const MovieDetails = () => {
             <h3>Overview</h3>
             <p>{movie.overview}</p>
             <h3>Genres</h3>
-            <p>{Object.values(movie.genres).map(item => item.name).join(', ')}</p>
+            <p>{movie.genres.map(item => item.name).join(', ')}</p>
         </TextInfoMov>
         </BriefInfoMov>
         <AddInfo>
