@@ -3,9 +3,11 @@ import css from './Movies.styles.module.css';
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { searchForWord } from "components/APIsResults/APIsResults";
-import RenderFilmsList from "components/RenderFilmsList/RenderFilmsList";
 import { useLocation } from "react-router-dom";
 import { Loader } from "components/Loader/Loader";
+import { lazy } from "react";
+
+const RenderFilmsList = lazy(() => import('../RenderFilmsList/RenderFilmsList'));
 
 const Movies = () => {
     const [searchParams, setSearchParams] = useSearchParams();
