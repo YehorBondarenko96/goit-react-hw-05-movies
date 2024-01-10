@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { searchForWord } from "components/APIsResults/APIsResults";
 import RenderFilmsList from "components/RenderFilmsList/RenderFilmsList";
 import { useLocation } from "react-router-dom";
+import { Loader } from "components/Loader/Loader";
 
 const Movies = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -12,9 +13,13 @@ const Movies = () => {
     const [wordResult, setWordResult] = useState();
     const location = useLocation();
     const [inputValue, setInputValue] = useState(paramsFofSearch);
+    const [indicatorLoader, setIndicatorLoader] = useState(true);
 
     useEffect(() => {
-        if(paramsFofSearch === "") return;
+        if(paramsFofSearch === ""){
+            setIndicatorLoader(false);
+            return;
+        };
         const searchReviewsFilms = async () => {
             try{
                 const result = await searchForWord(paramsFofSearch);
@@ -22,12 +27,14 @@ const Movies = () => {
             } catch (error) {
                 console.error("Error:", error.message);
             };
+            setIndicatorLoader(false);
         };
         searchReviewsFilms()
     }, [paramsFofSearch]);
 
     const forSubmit = (e) => {
         e.preventDefault();
+        setIndicatorLoader(true);
         const dataForSearch = e.currentTarget.elements.search.value;
         setSearchParams({searchValue: dataForSearch});
     };
@@ -54,7 +61,11 @@ const Movies = () => {
             <SearchFormButtonLabel>Search</SearchFormButtonLabel>
         </SearchFormButton>
         </SearchForm>
-        {paramsFofSearch !== "" && <RenderFilmsList filmsList={wordResult} location={location}/>}
+        {indicatorLoader ? (
+            <Loader />
+        ) : (
+            paramsFofSearch !== "" && <RenderFilmsList filmsList={wordResult} location={location}/>
+        )}
         </>
     )
 };
