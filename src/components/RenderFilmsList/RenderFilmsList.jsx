@@ -5,10 +5,10 @@ const RenderFilmsList = ({filmsList, location}) => {
         <>
         {filmsList &&
             (<ul>
-            {filmsList.map(Film => 
-                <li key={Film.id}>
-                    <Link to={`/movies/${Film.id}`} state={{from: location}}>
-                    {Film.title}
+            {filmsList.map(film => 
+                <li key={film.id}>
+                    <Link to={`/movies/${film.id}`} state={{from: location}}>
+                    {film.title}
                     </Link>
                 </li>
             )}
