@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation, useParams, Link } from "react-router-dom";
+import { useLocation, useParams, Link, useNavigate } from "react-router-dom";
 import { searchForId } from "components/APIsResults/APIsResults";
 import { Button, BriefInfoMov, ImgInfoMov, TextInfoMov, AddInfo } from "./MovieDetails.styled";
 import { Loader } from "components/Loader/Loader";
@@ -13,9 +13,16 @@ const MovieDetails = () => {
     const location = useLocation();
     const [backLocation] = useState(location.state?.from ?? '/');
 
+    const goHome = useNavigate();
+
     useEffect(() => {
         const searchPopularFilms = async () => {
             try{
+                if(isNaN(movieId)) {
+                    setIndicatorLoader(false);
+                    goHome ('/');
+                    return
+                };
                 const result = await searchForId(movieId);
                 setMovie(result);
             } catch (error) {
@@ -24,7 +31,7 @@ const MovieDetails = () => {
             setIndicatorLoader(false);
         };
         searchPopularFilms()
-    }, [movieId]);
+    }, [movieId, goHome]);
 
     return(
         <>
